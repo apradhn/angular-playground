@@ -48,7 +48,6 @@ angular.module('pokedex', [])
 .controller('PokeController', ['$scope', 'pokeFactory', '$filter', function($scope, pokeFactory, $filter) {
     var self = this;
     self.team = {};
-    // $scope.team = {};
     $scope.$watch('team', function(team) {
         $scope.team = team;
     })
@@ -57,8 +56,6 @@ angular.module('pokedex', [])
         $scope.pokemon = response.data.pokemon;
         $scope.pk_names = Object.keys(response.data.pokemon);
     })
-
-
 
     $scope.search = function() {
         matches = $filter('filter')($scope.pk_names, $scope.searchText);
@@ -76,5 +73,24 @@ angular.module('pokedex', [])
             });
             self.searchResults[pk.name] = pk;
         });
+    }
+
+    $scope.random = function() {
+        self.searchResults = {};
+        var max = Object.keys($scope.pk_names).length;
+        var min = 1;
+        var randomNumber = Math.floor(Math.random() * (max - min) + min);
+        var randomName = $scope.pk_names[randomNumber];
+        var pk = $scope.pokemon[randomName];
+            pokeFactory.getStats(pk.id).then(function(response) {
+                pk.attack = response.data.attack;
+                pk.defense = response.data.defense;
+                pk.sp_atk = response.data.sp_atk;
+                pk.sp_df = response.data.sp_def;
+                pk.speed = response.data.sp_def;
+                pk.hp = response.data.hp;
+                pk.types = response.data.types;
+            });
+        self.searchResults[pk.name] = pk;
     }
 }])

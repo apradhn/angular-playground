@@ -1,9 +1,8 @@
-.small-6.columns
+.small-3.columns
     .row
         h3 Team
-    div(ng-repeat='(id, pk) in team')
+    .callout(ng-repeat='(id, pk) in team')
+        h4 {{pk.name}}
         .row
             img(ng-src='{{pk.sprite}}')
-            | {{pk.name}}
-        .row
             button.button(ng-click='removeFromTeam(pk)') Remove
