@@ -1,0 +1,26 @@
+doctype
+html
+    head
+        title Invoice
+        script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js')
+        script(src='js/invoice3.js')
+        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/foundation/6.1.2/foundation.min.css')
+    body
+        div.row
+            h2 Calculator
+        div(ng-app='invoice3', ng-controller='InvoiceController as invoice')
+            div.row
+                b Invoice:
+            div.row
+                div.small-6 Quantity
+                    input(type='number', min='0', ng-model='invoice.qty')
+            div.row
+                div.small-6 Costs:
+                    input(type='number', min='0', ng-model='invoice.cost')
+                    select(ng-model='invoice.inCurr')
+                        option(ng-repeat='c in invoice.currencies') {{c}}
+            div.row
+                b Total:
+                span(ng-repeat='c in invoice.currencies') {{invoice.total(c) | currency:c}} 
+            div.row
+                button.button(type='button', ng-click='invoice.pay()') Pay

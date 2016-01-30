@@ -1,0 +1,15 @@
+doctype
+html
+    head
+        title Pokédex
+        script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js')
+        script(src='js/pokedex.js')
+        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/foundation/6.1.2/foundation.min.css')
+    body(ng-app='pokedex', ng-controller='PokeController as pokeCtrl')
+        .row
+            h1 Pokédex
+        .row
+            pk-search
+        .row
+            pk-search-results(search-results='pokeCtrl.searchResults', team='pokeCtrl.team')
+            pk-team(search-results='pokeCtrl.searchResults', team='pokeCtrl.team')

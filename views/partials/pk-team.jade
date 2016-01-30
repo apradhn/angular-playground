@@ -1,0 +1,9 @@
+.small-6.columns
+    .row
+        h3 Team
+    div(ng-repeat='(id, pk) in team')
+        .row
+            img(ng-src='{{pk.sprite}}')
+            | {{pk.name}}
+        .row
+            button.button(ng-click='removeFromTeam(pk)') Remove

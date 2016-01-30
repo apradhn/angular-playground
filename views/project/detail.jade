@@ -1,0 +1,18 @@
+form(name='myForm')
+    div.control-group(ng-class='{error: myForm.name.$invalid && !myForm.name.$pristine')
+        label Name
+        input(type='text', name='name', ng-model='editProject.project.name', required)
+        span.help-inline(ng-show='myForm.name.$error.required && !myForm.name.$pristine') Required {{myForm.name.$pristine}}
+    div.control-group(ng-class='{error: myForm.site.$invalid && !myForm.site.$pristine')
+        label Website
+        input(type='url', name='site', ng-model='editProject.project.site', required)
+        span.help-inline(ng-show='myForm.site.$error.required && !myForm.site.$pristine') Required
+        span.help-inline('ng-show='myForm.site.$error.url')
+
+    label Description
+    textarea(name='description', ng-model='editProject.project.description')
+
+    br
+    a.btn(href='#/') Cancel
+    button.btn.btn-primary(ng-click='editProject.save()', ng-disabled='myForm.$invalid') Save
+    button.btn.btn-danger(ng-click='editProject.destroy()', ng-show='editProject.project.$id') Delete

@@ -1,0 +1,13 @@
+doctype
+html(ng-app='project')
+    head
+        script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js')
+        script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-resource.min.js')
+        script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js')
+        script(src='https://cdn.firebase.com/js/client/2.0.4/firebase.js')
+        script(src='https://cdn.firebase.com/libs/angularfire/0.9.0/angularfire.min.js')
+        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/foundation/6.1.2/foundation.min.css')
+        script(src='js/project.js')
+    body
+        h2 JavaScript Projects
+        div(ng-view)

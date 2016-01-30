@@ -1,0 +1,32 @@
+.small-6.columns
+    .row
+        h3 Search Results
+    .callout(ng-repeat='pk in searchResults') 
+        h4 {{pk.name}}
+        .row
+            .small-6.columns
+                img(ng-src='{{pk.sprite}}')
+                div
+                    b(ng-repeat='type in pk.types') {{type.name}} 
+                p {{pk.description}}
+                button.button(ng-click='addToTeam(pk)') Add to Team
+            .small-6.columns
+                table
+                    tr
+                        th Atk
+                        td {{pk.attack}}
+                    tr
+                        th Def
+                        td {{pk.defense}}
+                    tr
+                        th Sp. Atk
+                        td {{pk.sp_atk}}
+                    tr
+                        th Sp. Def
+                        td {{pk.sp_df}}
+                    tr
+                        th Speed
+                        td {{pk.speed}}
+                    tr
+                        th HP
+                        td {{pk.hp}}
