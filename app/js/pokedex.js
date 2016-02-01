@@ -40,12 +40,18 @@ angular.module('pokedex', [])
     self.removeFromTeam = function(pk) {
         delete self.team.members[pk.name];
         _setAverages(pk);
+        _drawGraph();
     }
 
     $scope.addToTeam = function(pk) {
         self.team.members[pk.name] = pk;
         delete self.results[pk.name];
         _setAverages(pk);
+        _drawGraph();
+    }
+
+    self.removeAll = function() {
+        self.team = {};
     }
 
     var _setResults = function(pk) {
@@ -83,8 +89,24 @@ angular.module('pokedex', [])
         }
     }
 
-    var _drawGraph = function(attr, pk) {
-
+    var _drawGraph = function(attr) {
+        var ctx = document.getElementById('graph').getContext('2d');
+        var data = {
+            labels: ['Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed', 'HP'],
+            datasets: [
+                {
+                    label: 'Average Team Stats',
+                    fillColor: "rgba(220,220,220,0.2)",
+                    strokeColor: "rgba(220,220,220,1)",
+                    pointColor: "rgba(220,220,220,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: [self.team.attack, self.team.defense, self.team.sp_atk, self.team.sp_df, self.team.speed, self.team.hp]
+                }
+            ]
+        }
+        var graph = new Chart(ctx).Line(data);
     }
 
 }])

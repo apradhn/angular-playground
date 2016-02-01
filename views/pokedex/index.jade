@@ -2,10 +2,12 @@ doctype
 html
     head
         title Pokédex
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js')
+        script(src='https://code.jquery.com/jquery-2.2.0.min.js')      
         script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js')
         script(src='js/pokedex.js')
-        scrupt(src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.14/d3.js')
         link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/foundation/6.1.2/foundation.min.css')
+        link(rel='stylesheet', href='css/pokedex.css')
     body(ng-app='pokedex', ng-controller='PokeController as pokeCtrl')
         .row
             h1 Pokédex
@@ -16,7 +18,7 @@ html
                         input(type='text', ng-model='searchText', placeholder='Search Pokédex' name='searchText')
                         .button-group
                             input.button(type='submit', value='Submit', ng-clicm='search')
-                    button.button(ng-click='random()') Random
+                button.button(ng-click='random()') Random
         .row
             .medium-6.small-12.columns()
                 .row
@@ -51,7 +53,7 @@ html
                                     th HP
                                     td {{pk.hp}}
             .medium-6.small-12.columns
-                .row
+                //- .row
                     h3 Average Stats
                         table
                             tr
@@ -74,9 +76,10 @@ html
                                 td {{pokeCtrl.team.hp}}
                 .row
                     h3 Graph
-                    #graph
+                    canvas#graph(width='600', height='200')
                 .row
                     h3 Team
+                    button.button(ng-click='pokeCtrl.removeAll()') Clear
                 .callout(ng-repeat='(id, pk) in pokeCtrl.team.members')
                     h4 {{pk.name}}
                     .row

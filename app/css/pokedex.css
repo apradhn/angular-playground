@@ -1,0 +1,9 @@
+#graph rect {
+    fill: steelblue;
+}
+
+#graph text {
+    fill: white;
+    font-size: 10px;
+    text-anchor: end;
+}
